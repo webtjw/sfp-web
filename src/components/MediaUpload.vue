@@ -1,7 +1,7 @@
 <template>
   <div class="media-upload">
     <el-upload
-      action="https://jsonplaceholder.typicode.com/posts/"
+      action="http://wc.shaojun.xyz:8911/api/media/upload"
       :show-file-list="true"
       :multiple="false"
       accept="video/*,image/*"
@@ -32,6 +32,7 @@
     methods: {
       checkTypeSize (file) {
         var {type, size} = file;
+        console.log(size);
         type = type.split('/');
         this.hintText && (this.hintText = '');
         
