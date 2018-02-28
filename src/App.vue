@@ -1,23 +1,30 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <el-container>
+      <!-- sidebar -->
+      <el-aside width="200px">
+        <sidebar></sidebar>
+      </el-aside>
+      <!-- main container for router-->
+      <el-main>
+        <router-view />
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import Sidebar from './components/Sidebar'
+
+  export default {
+    name: 'App',
+    components: {Sidebar}
+  }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  html, body, #app, #app > .el-container {
+    width: 100%;
+    height: 100%;
+  }
 </style>
