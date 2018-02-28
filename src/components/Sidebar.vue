@@ -29,7 +29,7 @@ eef<template>
 <style lang="scss" scoped>
   .sidebar-menu {
     height: 100%;
-    background-color: #e9eef3;
+    background-color: rgb(250, 250, 250);
 
     .el-menu-item.is-active {
       background-color: #ecf5ff;

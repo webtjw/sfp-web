@@ -7,18 +7,28 @@ import {
   Main,
   Aside,
   Menu,
-  MenuItem
+  MenuItem,
+  Row,
+  Col
 } from 'element-ui';
+import VeLine from 'v-charts/lib/line';
+import VePie from 'v-charts/lib/pie';
 import 'reset.css';
-
-initialize();
-Vue.config.productionTip = false;
+import './assets/style/common.scss';
 
 Vue.use(Container);
 Vue.use(Main);
 Vue.use(Aside);
 Vue.use(Menu);
 Vue.use(MenuItem);
+Vue.use(Row)
+Vue.use(Col)
+Vue.component(VeLine.name, VeLine);
+Vue.component(VePie.name, VePie);
+
+Vue.config.productionTip = false;
+
+initialize();
 
 new Vue({
   el: '#app',
