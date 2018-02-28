@@ -7,6 +7,7 @@ import {
   Main,
   Aside,
   Menu,
+  Submenu,
   MenuItem,
   Row,
   Col
@@ -20,6 +21,7 @@ Vue.use(Container);
 Vue.use(Main);
 Vue.use(Aside);
 Vue.use(Menu);
+Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(Row)
 Vue.use(Col)
