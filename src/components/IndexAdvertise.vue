@@ -24,8 +24,8 @@
         pieData: {
           columns: ['type', 'percentage'],
           rows: [
-            {type: '图片', percentage: 0.7}, 
-            {type: '视频', percentage: 0.3} 
+            {type: '图片', percentage: 140},
+            {type: '视频', percentage: 70}
           ]
         },
         lineData: {
