@@ -5,7 +5,7 @@
       <p>您一共设置过<span class="strong big">210</span>个广告，正在生效的广告有<span class="strong big">10</span>个。</p>
       <ul>
         <li class="chart-item">
-          <ve-pie :data="pieData" :settings="pieSettings" width="300px" height="330px" :offsetY="50"></ve-pie>
+          <ve-pie :data="pieData" width="300px" height="330px" :offsetY="50"></ve-pie>
           <h6>广告种类饼图</h6>
         </li>
         <li class="chart-item">
