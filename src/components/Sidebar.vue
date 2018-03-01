@@ -1,4 +1,4 @@
-eef<template>
+<template>
   <el-menu class="sidebar-menu" :default-active="defaultActive" background-color="#fafafa" :router="true" ref="menu">
     <el-menu-item index="/">
       <template slot="title">首页</template>
@@ -38,6 +38,7 @@ eef<template>
 
 <style lang="scss" scoped>
   .sidebar-menu {
+    overflow-x: hidden;
     height: 100%;
     background-color: rgb(250, 250, 250);
 
