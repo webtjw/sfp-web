@@ -10,7 +10,15 @@ import {
   Submenu,
   MenuItem,
   Row,
-  Col
+  Col,
+  Button,
+  Input,
+  Message,
+  Checkbox,
+  CheckboxGroup,
+  DatePicker,
+  Pagination,
+  Upload
 } from 'element-ui';
 import VeLine from 'v-charts/lib/line';
 import VePie from 'v-charts/lib/pie';
@@ -23,8 +31,15 @@ Vue.use(Aside);
 Vue.use(Menu);
 Vue.use(Submenu);
 Vue.use(MenuItem);
-Vue.use(Row)
-Vue.use(Col)
+Vue.use(Row);
+Vue.use(Col);
+Vue.use(Button);
+Vue.use(Input);
+Vue.use(Checkbox);
+Vue.use(CheckboxGroup);
+Vue.use(DatePicker);
+Vue.use(Pagination);
+Vue.use(Upload);
 Vue.component(VeLine.name, VeLine);
 Vue.component(VePie.name, VePie);
 
