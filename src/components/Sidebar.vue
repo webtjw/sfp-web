@@ -1,17 +1,17 @@
 eef<template>
-  <el-menu class="sidebar-menu" default-active="0" background-color="#fafafa">
-    <el-menu-item index="1" @click="handleNodeClick('/')">
+  <el-menu class="sidebar-menu" :default-active="defaultActive" background-color="#fafafa" :router="true" ref="menu">
+    <el-menu-item index="/">
       <template slot="title">首页</template>
     </el-menu-item>
-    <el-submenu index="2">
+    <el-submenu index="media-submenu">
       <template slot="title">多媒体资源</template>
-      <el-menu-item index="2-1" @click="handleNodeClick('/media')"><template slot="title">资源列表</template></el-menu-item>
-      <el-menu-item index="2-2" @click="handleNodeClick('/media/upload')"><template slot="title">上传资源</template></el-menu-item>
+      <el-menu-item index="/media"><template slot="title">资源列表</template></el-menu-item>
+      <el-menu-item index="/media/upload"><template slot="title">上传资源</template></el-menu-item>
     </el-submenu>
-    <el-menu-item index="3" @click="handleNodeClick('/advertisement')">
+    <el-menu-item index="/advertisement">
       <template slot="title">广告设置</template>
     </el-menu-item>
-    <el-menu-item index="4" @click="handleNodeClick('/history')">
+    <el-menu-item index="/history">
       <template slot="title">操作历史</template>
     </el-menu-item>
   </el-menu>
@@ -20,12 +20,18 @@ eef<template>
 <script>
   export default {
     data () {
-      return {} 
+      return {
+        defaultActive: '/'
+      } 
     },
     methods: {
       handleNodeClick (path) {
         this.$router.push(path);
       }
+    },
+    mounted () {
+      const path = this.$route.path;
+      this.defaultActive = path;
     }
   }
 </script>
