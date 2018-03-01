@@ -33,8 +33,6 @@
 </template>
 
 <script>
-  import {MessageBox, Message} from 'element-ui';
-
   export default {
     props: {
       list: Array
@@ -52,10 +50,10 @@
     },
     methods: {
       deleteMedia () {
-        MessageBox.confirm('确定删除该资源？', {
+        this.$messagebox.confirm('确定删除该资源？', {
           callback: (action, instance, done) => {
             if (action === 'confirm') {
-              Message({
+              this.$message({
                 type: 'success',
                 message: '资源删除成功！',
                 center: true

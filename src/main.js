@@ -13,12 +13,13 @@ import {
   Col,
   Button,
   Input,
-  Message,
   Checkbox,
   CheckboxGroup,
   DatePicker,
   Pagination,
-  Upload
+  Upload,
+  MessageBox,
+  Message
 } from 'element-ui';
 import VeLine from 'v-charts/lib/line';
 import VePie from 'v-charts/lib/pie';
@@ -44,6 +45,8 @@ Vue.component(VeLine.name, VeLine);
 Vue.component(VePie.name, VePie);
 
 Vue.config.productionTip = false;
+Vue.prototype.$message = Message;
+Vue.prototype.$messagebox = MessageBox;
 
 initialize();
 
