@@ -8,9 +8,11 @@
       <el-menu-item index="/media"><template slot="title">资源列表</template></el-menu-item>
       <el-menu-item index="/media/upload"><template slot="title">上传资源</template></el-menu-item>
     </el-submenu>
-    <el-menu-item index="/advertisement">
-      <template slot="title">广告设置</template>
-    </el-menu-item>
+    <el-submenu index="ad-submenu">
+      <template slot="title">广告</template>
+      <el-menu-item index="/advertise/set"><template slot="title">广告设置</template></el-menu-item>
+      <el-menu-item index="/advertise"><template slot="title">广告列表</template></el-menu-item>
+    </el-submenu>
     <el-menu-item index="/history">
       <template slot="title">操作历史</template>
     </el-menu-item>

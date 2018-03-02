@@ -19,7 +19,11 @@ import {
   Pagination,
   Upload,
   MessageBox,
-  Message
+  Message,
+  Table,
+  TableColumn,
+  Select,
+  Option
 } from 'element-ui';
 import VeLine from 'v-charts/lib/line';
 import VePie from 'v-charts/lib/pie';
@@ -41,6 +45,10 @@ Vue.use(CheckboxGroup);
 Vue.use(DatePicker);
 Vue.use(Pagination);
 Vue.use(Upload);
+Vue.use(Table);
+Vue.use(TableColumn);
+Vue.use(Select);
+Vue.use(Option);
 Vue.component(VeLine.name, VeLine);
 Vue.component(VePie.name, VePie);
 

@@ -27,4 +27,7 @@
     width: 100%;
     height: 100%;
   }
+  #app > .el-container > .el-aside {
+    flex-shrink: 0;
+  }
 </style>
