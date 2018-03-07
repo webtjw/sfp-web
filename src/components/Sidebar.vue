@@ -13,9 +13,6 @@
       <el-menu-item index="/advertise/set"><template slot="title">广告设置</template></el-menu-item>
       <el-menu-item index="/advertise"><template slot="title">广告列表</template></el-menu-item>
     </el-submenu>
-    <el-menu-item index="/history">
-      <template slot="title">操作历史</template>
-    </el-menu-item>
   </el-menu>
 </template>
 
