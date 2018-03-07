@@ -1,7 +1,7 @@
 <template>
   <div class="media-upload">
     <div class="upload-btn">
-      <el-button size="small" type="primary" @click="() => this.$refs.nativeInput.click()">选择文件</el-button>
+      <el-button type="primary" @click="() => this.$refs.nativeInput.click()">选择文件</el-button>
       <div v-if="!!fileName" :class="{ok: isUploadTypeLegal}">已选择文件：<span>{{fileName}}</span>，文件体积：<span>{{fileSizeText}}</span>，类型：<span>{{isUploadTypeLegal ? '' : '错误的文件格式 '}}{{fileType}}</span></div>
     </div>
     <!-- accept="video/*,image/*" -->
@@ -21,7 +21,7 @@
         v-model="description">
       </el-input>
     </div>
-    <el-button size="small" type="primary" @click="submit">上 传</el-button>
+    <el-button type="primary" @click="submit">上 传</el-button>
   </div>
 </template>
 
