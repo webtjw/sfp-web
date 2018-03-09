@@ -1,34 +1,44 @@
 <template>
   <div class="media-list-container">
     <media-search></media-search>
-    <media-list :list="mediaList"></media-list>
+    <media-list :list="mediaListAfter"></media-list>
   </div>
 </template>
 
 <script>
+  import utils from '../utils/utils';
   import MediaList from './MediaList';
   import MediaSearch from './MediaSearch';
   import {getMediaList} from '../actions';
-  import bigImage from '../assets/images/f4c1445fa657c460365e1a9ca70703165378819c.jpg';
-  import demoVideo from '../assets/videos/demo.mp4';
 
-  // {id: 1, type: '图片', image: bigImage, name: '恒山钢铁侠加油机', time: '2018-03-01'},
-  // {id: 2, type: '视频', image: bigImage, name: '恒山钢铁侠加油机', time: '2018-03-01', url: demoVideo},
   export default {
     data () {
       return {
-        mediaList: [
-          {id: 1, type: '图片', image: bigImage, name: '恒山钢铁侠加油机', time: '2018-03-01'},
-          {id: 2, type: '视频', image: bigImage, name: '恒山钢铁侠加油机', time: '2018-03-01', url: demoVideo}
-        ]
+        mediaList: []
+      }
+    },
+    computed: {
+      mediaListAfter () {
+        const {mediaList} = this;
+
+        return mediaList.map(item => {
+
+          return item;
+        })
       }
     },
     methods: {
       async loadMedia () {
         let result = await getMediaList();
-        // http://wc.shaojun.xyz:8221/
-        console.log(result)
-      }
+        
+        if (Array.isArray(result) && result.length > 0) {
+          this.mediaList = result.map(item => {
+            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8221/${item}`}
+          })
+        }
+        else this.mediaList = [];
+      },
+
     },
     mounted () {
       this.loadMedia();

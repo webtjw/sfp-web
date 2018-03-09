@@ -27,6 +27,7 @@
 
 
 <script>
+  import utils from '../utils/utils';
   import {addMedia} from '../actions';
 
   const videoType = ['mp4', '3gp', 'mkv', 'flv'];
@@ -59,7 +60,7 @@
         this.$message('上传成功');
       },
       async submit () {
-        const {isUploadTypeLegal, description} = this;
+        const {isUploadTypeLegal, description, $message, $router} = this;
 
         if (!isUploadTypeLegal) {
           this.$message.error('选择上传文件格式错误，请重新选择文件');
@@ -72,25 +73,27 @@
         // formData.append('description', this.description);
 
         const result = await addMedia(formData);
-        console.log(result);
+        
+        if (Array.isArray(result) && result.length > 0) {
+          $message.success('上传成功');
+          $router.push('/media');
+        }
       },
       onNativeUpload () {
         const {files} = this.$refs.nativeInput;
         const file = files[0];
-        const type = file.type.split('/');
-        let typeText = '';
+        const type = utils.getFileType(file.name);
+
         this.isUploadTypeLegal = true;
 
-        if (type[0] === 'video' && videoType.indexOf(type[1] > -1)) typeText = '视频';
-        else if (type[0] === 'image' && imageType.indexOf(type[1] > -1)) typeText = '图片';
-        else {
+        if (!type) {
           this.$message.error('上传文件格式错误，请阅读说明');
           this.isUploadTypeLegal = false;
         }
         
         this.fileName = file.name;
         this.fileSize = file.size;
-        this.fileType = typeText || file.type;
+        this.fileType = type || file.type;
       }
     }
   }

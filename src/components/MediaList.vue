@@ -1,21 +1,20 @@
 <template>
   <div class="media-list-container">
-    <ul class="media-list">
-      <li class="media-item" v-for="item of list" :key="item.id">
-        <div class="image-box" @click="showDialog(item.type, item.url || item.image)">
-          <img :src="item.image" :alt="item.name">
-          <div v-if="item.type === '视频'" class="play video" title="播放视频"></div>
-          <div v-else class="play image" title="放大查看图片"></div>
-        </div>
-        <p class="name">{{item.name}}</p>
-        <p>类型：{{item.type}}</p>
-        <p>上传时间：{{item.time}}</p>
-        <div class="hover-operate">
-          <el-button size="mini" type="primary">设为广告</el-button>
-          <el-button size="mini" type="danger" @click="deleteMedia">删除资源</el-button>
-        </div>
-      </li>
-    </ul>
+    <!-- 列表表格 -->
+    <div class="media-table">
+      <el-table :data="list" stripe border>
+        <el-table-column prop="name" label="资源名称" width="auto"></el-table-column>
+        <el-table-column prop="type" label="类型" width="100"></el-table-column>
+        <el-table-column prop="time" label="上传时间"></el-table-column>
+        <el-table-column label="操作">
+          <template slot-scope="scope">
+            <el-button @click.native.prevent="showDialog(scope.$index, list)" type="primary" size="small">预览</el-button>
+            <el-button @click.native.prevent="openInNewWindow(scope.$index, list)" type="primary" size="small">打开链接</el-button>
+            <el-button @click.native.prevent="deleteMedia(scope.$index, list)" type="warning" size="small">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
     <!-- 分页 -->
     <el-pagination
       background
@@ -49,8 +48,10 @@
       }
     },
     methods: {
-      deleteMedia () {
-        this.$messagebox.confirm('确定删除该资源？', {
+      deleteMedia (index, list) {
+        const name = list[index].name;
+
+        this.$messagebox.confirm(`确定删除资源：${name}？`, {
           callback: (action, instance, done) => {
             if (action === 'confirm') {
               this.$message({
@@ -66,9 +67,11 @@
         this.dialogData.show = false;
         this.$refs.video.pause();
       },
-      showDialog (type, path) {
+      showDialog (index, list) {
+        const selectedItem = list[index];
         const {clientWidth, clientHeight} = document.documentElement;
-        this.dialogData.path = path;
+        const {type, url} = selectedItem;
+        this.dialogData.path = url;
 
         if (type === '图片') this.dialogData.type = 1;
         else if (type === '视频') {
@@ -78,6 +81,9 @@
           })
         }
         this.dialogData.show = true;
+      },
+      openInNewWindow (index, list) {
+        window.open(list[index].url);
       }
     }
   }
@@ -92,90 +98,9 @@
       text-indent: 10px;
       font-size: 22px;
     }
-    .media-list {
-      font-size: 0;
-
-      li {
-        padding: 20px 10px;
-        display: inline-block;
-        margin: 0 20px 30px 10px;
-        border-radius: 4px;
-        border: 1px solid #d8d8d8;
-        box-shadow: 4px 4px 8px #f2f2f2;
-        position: relative;
-        &:hover  {
-          border-color: #409EFF;
-
-          .hover-operate {
-            display: block;
-            border: 1px solid #409EFF;
-            border-top: 0;
-          }
-        }
-      }
-      p {
-        color: #999;
-        font-size: 13px;
-        line-height: 1.8;
-        &.name {
-          color: #303133;
-          text-align: center;
-          border-bottom: 1px dotted #e6e6e6;
-          padding-bottom: 4px;
-          margin-bottom: 4px;
-        }
-      }
-    }
-    .image-box {
-      position: relative;
-      width: 180px;
-      height: 100px;
-      margin-bottom: 20px;;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      background-color: #fff;
-      &:hover .play {
-        display: block
-      }
-
-      img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-      .play {
-        display: none;
-        position: absolute;
-        width: 64px;
-        height: 64px;
-        left: 50%;
-        top: 50%;
-        margin: -32px 0 0 -32px;
-        &.video {
-          background: url(../assets/images/play.png);
-        }
-        &.image {
-          background: url(../assets/images/zoom-in.png);
-        }
-      }
-    }
-    .hover-operate {
-      display: none;
-      overflow: hidden;
-      padding: 20px 0;
-      box-sizing: content-box;
-      position: absolute;
-      left: 0;
-      top: 100%;
-      width: 100%;
-      background-color: #fff;
-      z-index: 2;
-      transform: translate(-1px, -3px);
-      transition: height .4s ease-out;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      text-align: center;
+    .media-table {
+      margin: 10px 10px 30px;
+      .el-table { width: 100%;}
     }
     .el-pagination {
       font-weight: 400;
