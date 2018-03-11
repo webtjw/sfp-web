@@ -65,7 +65,7 @@
       },
       hideDialog () {
         this.dialogData.show = false;
-        this.$refs.video.pause();
+        this.$refs.video && this.$refs.video.pause();
       },
       showDialog (index, list) {
         const selectedItem = list[index];
