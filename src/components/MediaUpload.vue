@@ -95,11 +95,6 @@
         this.fileSize = file.size;
         this.fileType = type || file.type;
       }
-    },
-    mounted () {
-      setTimeout(() => {
-        this.$router.push('/media')
-      }, 2000)
     }
   }
 </script>
