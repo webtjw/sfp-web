@@ -8,19 +8,15 @@
         <el-table-column prop="time" label="上传时间"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button @click.native.prevent="showDialog(scope.$index, list)" type="primary" size="small">预览</el-button>
-            <el-button @click.native.prevent="openInNewWindow(scope.$index, list)" type="primary" size="small">打开链接</el-button>
+            <el-button @click.native.prevent="showDialog(scope.$index, list)" size="small">预览</el-button>
+            <el-button @click.native.prevent="approve(scope.$index, list)" type="primary" size="small">审核通过</el-button>
             <el-button @click.native.prevent="deleteMedia(scope.$index, list)" type="warning" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
     </div>
     <!-- 分页 -->
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="1000">
-    </el-pagination>
+    <!-- <el-pagination background layout="prev, pager, next" :total="1000"></el-pagination> -->
     <!-- dialog -->
     <div class="dialog" :style="{display: dialogData.show ? 'flex' : 'none'}" @click="hideDialog">
       <img v-if="dialogData.type === 1" :src="dialogData.path" alt="">
@@ -82,8 +78,20 @@
         }
         this.dialogData.show = true;
       },
-      openInNewWindow (index, list) {
-        window.open(list[index].url);
+      approve (index, list) {
+        const item = list[index];
+        
+        this.$messagebox.confirm(`确定审核通过资源 ${name}？`, {
+          callback: (action, instance, done) => {
+            if (action === 'confirm') {
+              this.$message({
+                type: 'success',
+                message: '操作成功！',
+                center: true
+              });
+            }
+          }
+        })
       }
     }
   }
