@@ -27,5 +27,5 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .advertise-container { margin: 10px 10px 30px;}
 </style>

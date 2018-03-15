@@ -1,9 +1,5 @@
 <template>
   <div class="advertise-list">
-    <h1>
-      <span>广告列表</span>
-      <!-- <el-button type="primary" size="mini" @click="() => $router.push('/advertise/set')">设置广告</el-button> -->
-    </h1>
     <el-table :data="tableData" stripe border style="width: 100%">
       <el-table-column prop="name" label="资源名称" width="180"></el-table-column>
       <el-table-column prop="statusText" label="播放状态" width="180"></el-table-column>
@@ -60,14 +56,4 @@
 </script>
 
 <style lang="scss" scoped>
-  .advertise-list h1 {
-    font-size: 20px;
-    padding: 10px 10px 20px;
-    display: flex;
-    align-items: center;
-
-    .el-button {
-      margin-left: 20px;
-    }
-  }
 </style>

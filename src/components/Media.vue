@@ -37,8 +37,7 @@
           })
         }
         else this.mediaList = [];
-      },
-
+      }
     },
     mounted () {
       this.loadMedia();

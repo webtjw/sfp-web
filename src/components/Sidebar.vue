@@ -10,8 +10,8 @@
     </el-submenu>
     <el-submenu index="ad-submenu">
       <template slot="title">广告</template>
-      <el-menu-item index="/advertise/set"><template slot="title">广告设置</template></el-menu-item>
-      <el-menu-item index="/advertise"><template slot="title">广告列表</template></el-menu-item>
+      <el-menu-item index="/advertisement"><template slot="title">广告列表</template></el-menu-item>
+      <el-menu-item index="/advertisement/display"><template slot="title">播放列表</template></el-menu-item>
     </el-submenu>
   </el-menu>
 </template>
@@ -26,6 +26,12 @@
     methods: {
       handleNodeClick (path) {
         this.$router.push(path);
+      }
+    },
+    watch: {
+      $route () {
+        const path = this.$route.path;
+        this.defaultActive = path;
       }
     },
     mounted () {

@@ -5,6 +5,7 @@ import Media from '../components/Media';
 import MediaUpload from '../components/MediaUpload';
 import Advertise from '../components/Advertise';
 import AdvertiseSet from '../components/AdvertiseSet';
+import Advertisement from '../components/Advertisement';
 
 Vue.use(Router)
 
@@ -26,14 +27,14 @@ export default new Router({
       component: MediaUpload
     },
     {
-      path: '/advertise',
-      name: 'Advertise',
-      component: Advertise
+      path: '/advertisement',
+      name: 'Advertisement',
+      component: Advertisement
     },
     {
-      path: '/advertise/set',
-      name: 'AdvertiseSet',
-      component: AdvertiseSet
+      path: '/advertisement/display',
+      name: 'Advertise',
+      component: Advertise
     }
   ]
 })
