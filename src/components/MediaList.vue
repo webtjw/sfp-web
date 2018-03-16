@@ -28,6 +28,8 @@
 </template>
 
 <script>
+  import {approveMeidaItem} from '../actions'
+
   export default {
     props: {
       list: Array
@@ -81,14 +83,16 @@
       approve (index, list) {
         const item = list[index];
         
-        this.$messagebox.confirm(`确定审核通过资源 ${name}？`, {
-          callback: (action, instance, done) => {
+        this.$messagebox.confirm(`确定审核通过资源 ${item.name}？`, {
+          callback: async (action, instance, done) => {
             if (action === 'confirm') {
+              const result = await approveMeidaItem(item.name)
               this.$message({
                 type: 'success',
                 message: '操作成功！',
                 center: true
               });
+              this.$emit('freshData')
             }
           }
         })

@@ -11,3 +11,10 @@ export async function addMedia (formData) {
     data: formData
   })
 }
+
+export async function approveMeidaItem (id) {
+  return axios({
+    method: 'put',
+    url: `http://wc.shaojun.xyz:8211/api/media/approve/${id}`
+  })
+}

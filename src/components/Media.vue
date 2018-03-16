@@ -1,7 +1,7 @@
 <template>
   <div class="media-list-container">
     <media-search></media-search>
-    <media-list :list="mediaListAfter"></media-list>
+    <media-list :list="mediaListAfter" @freshData="loadMedia"></media-list>
   </div>
 </template>
 
@@ -30,7 +30,7 @@
     methods: {
       async loadMedia () {
         let result = await getMediaList();
-        
+
         if (Array.isArray(result) && result.length > 0) {
           this.mediaList = result.map(item => {
             return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8221/${item}`}
