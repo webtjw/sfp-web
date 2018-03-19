@@ -10,6 +10,7 @@
           <template slot-scope="scope">
             <el-button @click.native.prevent="previewMedia(scope.$index, list)" size="small">预览</el-button>
             <el-button @click.native.prevent="setDisplay(scope.$index, list)" type="primary" size="small">设置播放</el-button>
+            <el-button @click.native.prevent="addToDisplay(scope.$index, list)" type="primary" size="small">加入播放列表</el-button>
             <el-button @click.native.prevent="deleteMedia(scope.$index, list)" type="warning" size="small">删除</el-button>
           </template>
         </el-table-column>
@@ -104,6 +105,9 @@
           })
         }
         else this.list = [];
+      },
+      addToDisplay () {
+        this.$message.success('操作成功');
       }
     },
     mounted () {
