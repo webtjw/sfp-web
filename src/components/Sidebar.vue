@@ -11,7 +11,7 @@
     <el-submenu index="ad-submenu">
       <template slot="title">广告</template>
       <el-menu-item index="/advertisement"><template slot="title">广告列表</template></el-menu-item>
-      <el-menu-item index="/advertisement/display"><template slot="title">播放列表</template></el-menu-item>
+      <el-menu-item index="/displaying"><template slot="title">播放列表</template></el-menu-item>
     </el-submenu>
   </el-menu>
 </template>

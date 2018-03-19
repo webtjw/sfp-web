@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Index from '../components/Index';
 import Media from '../components/Media';
 import MediaUpload from '../components/MediaUpload';
-import Advertise from '../components/Advertise';
+import Displaying from '../components/Displaying';
 import AdvertiseSet from '../components/AdvertiseSet';
 import Advertisement from '../components/Advertisement';
 
@@ -32,9 +32,9 @@ export default new Router({
       component: Advertisement
     },
     {
-      path: '/advertisement/display',
-      name: 'Advertise',
-      component: Advertise
+      path: '/displaying',
+      name: 'Displaying',
+      component: Displaying
     }
   ]
 })

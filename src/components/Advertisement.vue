@@ -31,7 +31,7 @@
 </template>
 
 <script>
-  import {getMediaList} from '../actions';
+  import {getAdvertiseList} from '../actions';
   import utils from '../utils/utils';
   import AdvertiseSet from './AdvertiseSet'
 
@@ -69,8 +69,8 @@
         const {dialogData: {type}} = this;
 
         if (type !== 3) {
-          if (type === 2) this.dialogData.show = false;
-          this.$refs.video && this.$refs.video.pause();
+          if (type === 2) this.$refs.video && this.$refs.video.pause();
+          this.dialogData.show = false;
         }
       },
       previewMedia (index, list) {
@@ -96,11 +96,11 @@
         this.initialId = item.name
       },
       async loadMedia () {
-        let result = await getMediaList();
+        let result = await getAdvertiseList();
         
         if (Array.isArray(result) && result.length > 0) {
           this.list = result.map(item => {
-            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8221/${item}`}
+            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8231/${item}`}
           })
         }
         else this.list = [];
