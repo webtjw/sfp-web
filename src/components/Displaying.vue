@@ -18,6 +18,7 @@
             <el-button @click.native.prevent="previewMedia(scope.$index, tableData)" size="small">预览</el-button>
             <el-button v-if="tableData[scope.$index].status === 0" @click.native.prevent="toggleDisplay(scope.$index, tableData, 1)" size="small" type="primary">播放</el-button>
             <el-button v-else @click.native.prevent="toggleDisplay(scope.$index, tableData, 0)" size="small" type="danger">停止</el-button>
+            <el-button @click.native.prevent="confirmRemove(scope.$index, tableData)" size="small" type="warning">移除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -36,7 +37,7 @@
 </template>
 
 <script>
-  import {getDisplayingList} from '../actions';
+  import {getDisplayingList, removeDisplaying} from '../actions';
   import utils from '../utils/utils';
 
   export default {
@@ -106,6 +107,32 @@
             }
           }
         })
+      },
+      confirmRemove (index, list) {
+        const {name, status} = list[index]
+        if (status) this.$messagebox.confirm(`该广告正在播放中，确定要移除该广告？`, {
+          callback: (action, instance, done) => {
+            if (action === 'confirm') this.remove(name)
+          }
+        })
+        else this.remove(name)
+      },
+      async remove (fileName) {
+        const result = await removeDisplaying(fileName)
+        if (result === '') {
+          this.$message({
+            type: 'success',
+            message: '移除成功！',
+            center: true
+          });
+          this.loadData()
+        } else {
+          this.$message({
+            type: 'error',
+            message: '移除失败，请重试',
+            center: true
+          });
+        }
       }
     },
     mounted () {

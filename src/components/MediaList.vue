@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import {approveMeidaItem} from '../actions'
+  import {approveMeidaItem, deleteMedia} from '../actions'
 
   export default {
     props: {
@@ -46,17 +46,18 @@
       }
     },
     methods: {
-      deleteMedia (index, list) {
+      async deleteMedia (index, list) {
         const name = list[index].name;
 
         this.$messagebox.confirm(`确定删除资源：${name}？`, {
-          callback: (action, instance, done) => {
+          callback: async (action, instance, done) => {
             if (action === 'confirm') {
-              this.$message({
-                type: 'success',
+              const result = await deleteMedia(name);
+              if (result === '') this.$message.success({
                 message: '资源删除成功！',
                 center: true
               });
+              this.$emit('freshData')
             }
           }
         })

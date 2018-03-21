@@ -6,7 +6,7 @@
         <el-table-column prop="name" label="广告名称" width="auto"></el-table-column>
         <el-table-column prop="type" label="类型" width="100"></el-table-column>
         <el-table-column prop="time" label="上传时间"></el-table-column>
-        <el-table-column label="操作">
+        <el-table-column label="操作" width="400">
           <template slot-scope="scope">
             <el-button @click.native.prevent="previewMedia(scope.$index, list)" size="small">预览</el-button>
             <el-button @click.native.prevent="setDisplay(scope.$index, list)" type="primary" size="small">设置播放</el-button>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-  import {getAdvertiseList} from '../actions';
+  import {getAdvertiseList, addToDisplaying, deleteAdvertise} from '../actions';
   import utils from '../utils/utils';
   import AdvertiseSet from './AdvertiseSet'
 
@@ -55,13 +55,17 @@
         const name = list[index].name;
 
         this.$messagebox.confirm(`确定删除广告：${name}？`, {
-          callback: (action, instance, done) => {
+          callback: async (action, instance, done) => {
             if (action === 'confirm') {
-              this.$message({
+              const result = await deleteAdvertise(name);
+
+              if (result === '') this.$message({
                 type: 'success',
                 message: '广告删除成功！',
                 center: true
               });
+
+              this.loadMedia();
             }
           }
         })
@@ -106,8 +110,10 @@
         }
         else this.list = [];
       },
-      addToDisplay () {
+      async addToDisplay (index, list) {
+        const result = await addToDisplaying(list[index].name)
         this.$message.success('操作成功');
+        this.loadMedia();
       }
     },
     mounted () {
