@@ -2,7 +2,8 @@
   <div class="advertise-set">
     <label class="form-item">
       <div class="label">广告 ID：</div>
-      <el-input v-model="inputId" placeholder="请要媒体资源 ID" style="width: 300px;"></el-input>
+      <div class="bold">{{inputId}}</div>
+      <!-- <el-input v-model="inputId" :disabled="true" placeholder="请要媒体资源 ID" style="width: 300px;"></el-input> -->
       <!-- <div class="extra" @click="() => $router.push">上传新资源</div> -->
     </label>
     <label class="form-item">
@@ -47,28 +48,33 @@
       return {
         inputId: '',
         inputTime: '',
-        positionValue: '',
+        positionValue: null,
         position: [
-          {label: '广告位 1', value: 1},
-          {label: '广告位 2', value: 2},
-          {label: '广告位 3', value: 3},
-          {label: '广告位 4', value: 4}
+          {label: '默认', value: ''}
         ],
         dateRange: ''
       }
     },
     methods: {
       submit () {
-        const {inputId, positionValue, inputTime, dateRange} = this;
-        
+        const {inputId, positionValue, inputTime, dateRange, formatDate} = this;
         if (!inputId) this.$message.error('请输入要设置的广告 ID')
-        else if (!positionValue) this.$message.error('请选择广告位置')
-        else if (!inputTime) this.$message.error('请选择广告播放频次')
+        else if (positionValue === null) this.$message.error('请选择广告位置')
+        else if (!inputTime) this.$message.error('请输入广告播放频次')
+        else if (!/[0-9]+/.test(inputTime) || inputTime <= 0) this.$message.error('播放次数应该为大于0的数字')
         else if (!dateRange) this.$message.error('请选择广告播放时间范围')
         else {
-          this.$message.success('设置成功')
-          this.$emit('closeDialog')
+          this.$emit('confirmSubmit', {
+            Title: inputId,
+            Zone: positionValue,
+            PlayCountLimit: inputTime,
+            PlayStartDate: formatDate(dateRange[0]),
+            PlayEndDate: formatDate(dateRange[1])
+          })
         }
+      },
+      formatDate (date) {
+        return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`
       }
     },
     mounted () {
@@ -85,7 +91,7 @@
     background-color: #fff;
     border-radius: 4px;
     .form-item {
-        margin: 10px 0;
+      margin: 10px 0;
       display: flex;
       align-items: center;
       .label {
@@ -94,6 +100,7 @@
         margin: 0 10px;
         text-align: right;
       }
+      .bold { font-weight: 700;}
     }
     .btn {
       padding: 20px;

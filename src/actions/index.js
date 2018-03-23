@@ -43,3 +43,9 @@ export async function getDisplayingList () {
 export async function removeDisplaying (fileName) {
   return axios.delete(`http://wc.shaojun.xyz:8211/api/media/deleteFromPlaylist/${fileName}`);
 }
+// 广告列表 设置播放规则
+export async function setDisplayRules (params) {
+  return axios.post(`http://wc.shaojun.xyz:8211/api/media/assets/${params.Title}/setting`, {
+    data: params
+  });
+}

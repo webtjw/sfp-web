@@ -12,7 +12,7 @@
         <el-table-column label="播放次数" width="180">
           <template slot-scope="scope">{{`${tableData[scope.$index].time}/${tableData[scope.$index].maxTime}`}}</template>
         </el-table-column>
-        <el-table-column prop="uploadTime" label="上传时间"></el-table-column>
+        <el-table-column prop="uploadTime" label="播放时间范围"></el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
             <el-button @click.native.prevent="previewMedia(scope.$index, tableData)" size="small">预览</el-button>
@@ -66,7 +66,7 @@
               maxTime: 10000,
               url: `http://wc.shaojun.xyz:8241/${item}`,
               type: utils.getFileType(item),
-              uploadTime: '2018-02-06'
+              uploadTime: '2018-02-06 至 2018-04-23'
             }
           })
         } else this.tableData = [];

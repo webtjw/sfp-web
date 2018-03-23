@@ -25,14 +25,14 @@
         <video ref="video" :src="dialogData.path" width="1000" height="600" controls autoplay></video>
       </div>
       <div v-else-if="dialogData.type === 3">
-        <advertise-set @closeDialog="dialogData.show = false" :initialId="initialId"></advertise-set>
+        <advertise-set @closeDialog="dialogData.show = false" :initialId="initialId" @confirmSubmit="setAdvertiseParams"></advertise-set>
       </div>
     </div>    
   </div>
 </template>
 
 <script>
-  import {getAdvertiseList, addToDisplaying, deleteAdvertise} from '../actions';
+  import {getAdvertiseList, addToDisplaying, deleteAdvertise, setDisplayRules} from '../actions';
   import utils from '../utils/utils';
   import AdvertiseSet from './AdvertiseSet'
 
@@ -114,6 +114,11 @@
         const result = await addToDisplaying(list[index].name)
         this.$message.success('操作成功');
         this.loadMedia();
+      },
+      async setAdvertiseParams (params) {
+        this.dialogData.show = false
+        const result = await setDisplayRules(params)
+        this.$message.success('设置成功')
       }
     },
     mounted () {
