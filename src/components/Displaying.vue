@@ -59,11 +59,13 @@
         
         if (Array.isArray(result) && result.length) {
           this.tableData = result.map(item => {
+            const mockMax = Math.ceil(Math.random() * 1000) * 10
+            const mockItem = Math.ceil(Math.random() * mockMax)
             return {
               name: item,
               status: 1,
-              time: 0,
-              maxTime: 10000,
+              time: mockItem,
+              maxTime: mockMax,
               url: `http://wc.shaojun.xyz:8241/${item}`,
               type: utils.getFileType(item),
               uploadTime: '2018-02-06 至 2018-04-23'
