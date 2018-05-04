@@ -105,7 +105,7 @@
         
         if (Array.isArray(result) && result.length > 0) {
           this.list = result.map(item => {
-            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8231/${item}`}
+            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://localhost:8231/${item}`}
           })
         }
         else this.list = [];

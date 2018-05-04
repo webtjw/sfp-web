@@ -66,7 +66,7 @@
               status: 1,
               time: mockItem,
               maxTime: mockMax,
-              url: `http://wc.shaojun.xyz:8241/${item}`,
+              url: `http://localhost:8241/${item}`,
               type: utils.getFileType(item),
               uploadTime: '2018-02-06 至 2018-04-23'
             }

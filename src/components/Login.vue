@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div class="login-container" @keydown.enter="checkLogin">
     <h1 class="title">托肯恒山多媒体广告管理平台</h1>
     <div class="login-box">
       <el-input placeholder="用户名" v-model="userName" :maxlength="40" />
@@ -31,9 +31,11 @@ export default {
       const {userName, password, isRemember} = this
       if (!userName) this.$message.error('请输入用户名')
       else if (!password) this.$message.error('请输入密码')
-      else {
+      else if (userName === 'admin' && password === 'admin') {
+        this.$message.success(`登陆成功！欢迎您，${userName}`)
+        this.$router.push('/')
         this.saveUser(isRemember, userName)
-        console.log(userName, password)
+        this.$parent.$parent.$parent.hideSidebar = false
       }
     },
     saveUser (is, name) {

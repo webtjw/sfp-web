@@ -33,7 +33,7 @@
 
         if (Array.isArray(result) && result.length > 0) {
           this.mediaList = result.map(item => {
-            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://wc.shaojun.xyz:8221/${item}`}
+            return {name: item, type: utils.getFileType(item), time: '2015-01-08 01:08:08', url: `http://localhost:8221/${item}`}
           })
         }
         else this.mediaList = [];

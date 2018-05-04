@@ -33,7 +33,7 @@
     height: 100%;
   }
   #app {
-    .el-aside {flex-shrink: 0;}
-    .el-main { padding: 0;}
+    .el-aside {flex-shrink: 0; margin-right: 30px;}
+    .el-main { padding: 0; padding-right: 30px;}
   }
 </style>

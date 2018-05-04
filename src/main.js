@@ -59,9 +59,11 @@ Vue.prototype.$messagebox = MessageBox;
 
 initialize();
 
+location.hash = '/login'
+
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-});
+})

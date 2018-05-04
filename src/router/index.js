@@ -22,9 +22,7 @@ const router = new Router({
 })
 // 检查是否登录了
 router.beforeEach((to, from, next) => {
-  if (to.path !== '/login') {
-    next('/login')
-  } else next()
+  next()
 })
 
 export default router
